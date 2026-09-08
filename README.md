@@ -17,6 +17,21 @@ npm run test:unit   # Pruebas unitarias con Jest + Vue Test Utils
 npm run test:e2e    # Pruebas E2E con Cypress
 \`\`\`
 
+## Publicar en GitHub Pages
+
+El workflow `.github/workflows/deploy.yml` compila la aplicación y publica
+automáticamente `dist` en GitHub Pages cada vez que se actualiza la rama
+`main`.
+
+Para activarlo:
+
+1. Sube el proyecto a GitHub.
+2. Entra en **Settings > Pages** del repositorio.
+3. Selecciona **GitHub Actions** como fuente de publicación.
+
+La configuración de Vue CLI adapta automáticamente la ruta de los assets al
+nombre del repositorio.
+
 ## Decisiones técnicas
 - **Vuex modularizado** (`productos`, `filtros`) en vez de un store único, para
   mantener el código organizado a medida que crezca la aplicación.
