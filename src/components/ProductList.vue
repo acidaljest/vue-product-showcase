@@ -12,16 +12,18 @@
     <!-- Estado de carga -->
     <v-progress-circular v-if="cargando" indeterminate color="primary" />
 
-    <!-- Estado de error -->
-    <v-alert v-else-if="error" type="error">{{ error }}</v-alert>
+    <!-- El catálogo local permite seguir usando la app si falla la API. -->
+    <v-alert v-if="error && !cargando" type="warning" class="mb-4">
+      {{ error }} Se muestra un catálogo de respaldo.
+    </v-alert>
 
     <!-- Estado vacío -->
-    <v-alert v-else-if="productosFiltrados.length === 0" type="info">
+    <v-alert v-if="!cargando && productosFiltrados.length === 0" type="info">
       No hay productos disponibles en esta categoría.
     </v-alert>
 
     <!-- Lista de productos -->
-    <v-row v-else>
+    <v-row v-if="!cargando && productosFiltrados.length > 0">
       <v-col
         v-for="producto in productosFiltrados"
         :key="producto.id"

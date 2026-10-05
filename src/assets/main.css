@@ -13,8 +13,8 @@
 
 body {
   margin: 0;
-  background: var(--color-papel);
-  color: var(--color-carbon);
+  background: rgb(var(--v-theme-background, 244, 239, 230));
+  color: rgb(var(--v-theme-on-background, 44, 44, 42));
   font-family: Arial, sans-serif;
 }
 
@@ -22,12 +22,12 @@ button, a { font: inherit; }
 a { color: inherit; }
 
 .v-application {
-  background: var(--color-papel) !important;
-  color: var(--color-carbon);
+  background: rgb(var(--v-theme-background)) !important;
+  color: rgb(var(--v-theme-on-background));
 }
 
 .v-main {
-  background: var(--color-papel);
+  background: rgb(var(--v-theme-background));
 }
 
 .app-header__title {

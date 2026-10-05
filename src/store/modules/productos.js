@@ -1,4 +1,5 @@
 import axios from "axios";
+import catalogoRespaldo from "./catalogoRespaldo";
 
 export default {
   namespaced: true,
@@ -24,10 +25,13 @@ export default {
       commit("SET_ERROR", null);
       try {
         // Usamos una API pública de prueba (fakestoreapi) que simula un catálogo real
-        const respuesta = await axios.get("https://fakestoreapi.com/products");
+        const respuesta = await axios.get("https://fakestoreapi.com/products", {
+          timeout: 8000,
+        });
         commit("SET_PRODUCTOS", respuesta.data);
       } catch (error) {
         commit("SET_ERROR", "No se pudieron cargar los productos. Intenta nuevamente.");
+        commit("SET_PRODUCTOS", catalogoRespaldo);
       } finally {
         commit("SET_LOADING", false);
       }
