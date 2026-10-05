@@ -13,5 +13,12 @@ describe("Filtrado de productos", () => {
     cy.get(".product-card").each(($card) => {
       cy.wrap($card).should("contain.text", "electronics");
     });
+
+    cy.get(".product-card").first().contains("Agregar a favoritos").click();
+    cy.get(".product-card").first().contains("Quitar de favoritos").should("be.visible");
+
+    cy.contains("button", "Usar tema oscuro").click();
+    cy.get(".v-application").should("have.class", "v-theme--dark");
+    cy.contains("button", "Usar tema claro").click();
   });
 });

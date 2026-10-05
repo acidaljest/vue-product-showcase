@@ -8,15 +8,24 @@
         {{ producto.category }}
       </v-chip>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions class="flex-column align-stretch">
       <v-btn color="primary" variant="flat" block @click="$emit('ver-detalle', producto)">
         Ver detalle
+      </v-btn>
+      <v-btn
+        variant="text"
+        :aria-pressed="esFavorito(producto.id)"
+        @click="alternarFavorito(producto)"
+      >
+        {{ esFavorito(producto.id) ? "Quitar de favoritos" : "Agregar a favoritos" }}
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "ProductCard",
   props: {
@@ -27,6 +36,12 @@ export default {
     },
   },
   emits: ["ver-detalle"],
+  computed: {
+    ...mapGetters("favoritos", ["esFavorito"]),
+  },
+  methods: {
+    ...mapActions("favoritos", ["alternarFavorito"]),
+  },
   mounted() {
     // Hook del ciclo de vida requerido en la Lección 1
     console.log(`[ProductCard montada] ${this.producto.title}`);

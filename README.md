@@ -4,6 +4,8 @@
 SPA desarrollada con Vue.js 3 como proyecto de cierre del Módulo 7. Consume
 un catálogo de productos desde una API REST (FakeStoreAPI), gestiona el
 estado global con Vuex, y utiliza Vuetify como librería de componentes UI.
+Si la API no responde, muestra un catálogo local de respaldo para mantener
+disponibles los productos y el filtro por categoría.
 
 ## Instalación
 \`\`\`bash
@@ -33,12 +35,13 @@ La configuración de Vue CLI adapta automáticamente la ruta de los assets al
 nombre del repositorio.
 
 ## Decisiones técnicas
-- **Vuex modularizado** (`productos`, `filtros`) en vez de un store único, para
+- **Vuex modularizado** (`productos`, `filtros`, `favoritos`) en vez de un store único, para
   mantener el código organizado a medida que crezca la aplicación.
 - **Vuetify** elegido por su sistema de componentes completo (Material Design)
   que acelera el maquetado sin sacrificar consistencia visual.
 - **API pública FakeStoreAPI** usada como fuente de datos real para simular
-  el escenario de e-commerce descrito en la consigna.
+  el escenario de e-commerce descrito en la consigna. Si no está disponible,
+  `src/store/modules/catalogoRespaldo.js` permite seguir usando el catálogo.
 - **Getters computados en el componente** (`productosFiltrados`) en vez de un
   getter en Vuex, para mantener la lógica de presentación cerca de donde se usa.
 
@@ -46,12 +49,13 @@ nombre del repositorio.
 ✅ Componentes reutilizables con ciclo de vida
 ✅ Consumo de API con manejo de loading/error/vacío
 ✅ Estado centralizado con Vuex (módulos namespaced)
+✅ Favoritos gestionados desde Vuex
 ✅ Pruebas unitarias (render + eventos) y E2E (flujo de filtrado)
-✅ Interfaz con Vuetify, responsive
+✅ Interfaz con Vuetify, responsive y con tema claro/oscuro
 
 ## Mejoras futuras
 - Migración a Nuxt para agregar SSR y mejorar SEO si el catálogo se vuelve público.
-- Módulo de favoritos con persistencia en localStorage.
+- Persistencia de favoritos en localStorage.
 
 ## Autor
 Carolina — Bootcamp Desarrollo Front-End
